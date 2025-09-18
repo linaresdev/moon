@@ -1,41 +1,44 @@
 <?php
-namespace Moon;
+namespace Projet
+/*
+*---------------------------------------------------------
+* ©IIPEC
+*---------------------------------------------------------
+*/
 
-class Driver
-{
+class Driver {
+
     public function info() {
 
         return [
-            'name'          => 'Moon',
+            'name'          => 'Core',
             'author'        => 'Ramon A Linares Febles',
             'email'         => 'rlinareslf@gmail.com',
             'license'       => 'Privada',
             'support'       => 'https://support.lc',
             'version'       => 'V-0.0',
-            'description'   => 'Gestor de paquetes y contenidos'
+            'description'   => 'Core System'
         ];
     }
 
-    public function app()
-    {
+    public function app() {
+
         return [
-            'type' => 'package',
-            'slug' => 'moon',
-            'driver' => '\Mon\Driver::class',
-            'token' => NULL,
+            'type'      => 'core',
+            'slug'      => 'cms',
+            'driver'    => '\Moo\Core\Driver::class',
+            'token'     => NULL,
             'activated' => 1
         ];
     }
 
-    public function drivers() {
-        return [];
-    }
-
-    public function providers() { 
+    public function drivers() { 
         return [
-            \Moon\Providers\MoonServiceProvider::class
+            
         ]; 
     }
+
+    public function providers() { return []; }
     public function alias() { return []; }
 
     public function install($app) { }

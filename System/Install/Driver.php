@@ -1,18 +1,18 @@
 <?php
-namespace Moon;
+namespace Moon\Install;
 
 class Driver
 {
-    public function info() {
-
+    public function info()
+    {
         return [
-            'name'          => 'Moon',
+            'name'          => 'Install',
             'author'        => 'Ramon A Linares Febles',
             'email'         => 'rlinareslf@gmail.com',
             'license'       => 'Privada',
             'support'       => 'https://support.lc',
             'version'       => 'V-0.0',
-            'description'   => 'Gestor de paquetes y contenidos'
+            'description'   => 'Asistentent de instalacion'
         ];
     }
 
@@ -20,20 +20,17 @@ class Driver
     {
         return [
             'type' => 'package',
-            'slug' => 'moon',
-            'driver' => '\Mon\Driver::class',
+            'slug' => 'install',
+            'driver' => '\Moon\Install\Driver::class',
             'token' => NULL,
             'activated' => 1
         ];
     }
 
-    public function drivers() {
-        return [];
-    }
-
     public function providers() { 
         return [
-            \Moon\Providers\MoonServiceProvider::class
+            \Moon\Install\Providers\InstallServiceProvider::class,
+            \Moon\Install\Providers\RouteServiceProvider::class,
         ]; 
     }
     public function alias() { return []; }

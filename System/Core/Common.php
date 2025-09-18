@@ -1,0 +1,54 @@
+<?php
+
+$this->app->bind("Moon", function( $app )
+{
+    return new \Moon\Core\Support\Moon(
+        new \Moon\Core\Support\Loader($app)
+    );
+});
+
+## LUNA
+$this->app["moon"] = Moon::load();
+
+## BIBLIOTECAS BÁSICAS
+Moon::load( "url", new \Moon\Core\Support\Url($this->app) );
+Moon::load( "finder", new \Moon\Core\Support\Finder($this->app) );
+Moon::load( "driver", new \Moon\Core\Support\Driver($this->app) );
+Moon::load( "temp", new \Moon\Core\Support\Temp($this->app) );
+Moon::load( "kernel", new \Moon\Core\Support\Kernel($this->app) );
+
+# URLS && PATHS
+Moon::url([
+    "{base}" => Moon::dir()
+]);
+
+Moon::path([
+    ## Real Path
+    "{base}"    => realpath(__DIR__."/../../"),
+    "{http}"    => "{base}/Http",
+    "{system}"  => "{base}/System",
+    "{tmp}"     => env("APP_TMP", base_path("tmps")),
+    "{public}"  => public_path(Moon::dir()),
+    
+    ## Small Paths
+    "{smpath}"      => str_replace(base_path('/'), null, realpath(__DIR__."/../../")),
+    "{smhttp}"      => "{smpath}/Http",
+    "{smsystem}"    => "{smpath}/System",
+    "{smcore}"      => "{smsystem}/Core",    
+]);
+
+## COMMON HELPER
+require_once(__DIR__."/Support/Helper.php");
+
+//dd(Psr\Log\LogLevel::CRITICAL);
+// try {
+//     throw new \Moon\Core\Exceptions\CoreException("Error Processing Request", 1);
+// } catch (\Moon\Core\Exceptions\CoreException $th) {
+//     dd($th->getCode());
+// }
+
+//throw new \Moon\Core\Exceptions\CoreException("Error Processing Request", 1);
+ 
+//Moon::driver(\Moon\Driver::class)->mount();
+
+Moon::start();

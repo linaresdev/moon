@@ -1,0 +1,130 @@
+@charset "utf-8";
+body{
+   background: #f0f0f0;
+}
+.btn [class*="mdi mdi-"] {
+   font-size: 18px;
+   line-height: 90%;
+   position: relative;
+   top: 2px;
+}
+.txt-editor {
+   min-height: 360px !important;
+}
+
+[role=install] {
+   padding: 10% 0 0 0;
+}
+[role=install] .alert.alert-install {
+   border-radius: 0 0 12px 12px;
+   margin-top: -11%;
+}
+
+/*
+* BOX */
+.box{
+   border-radius: 4px 4px;
+   margin: 0 0 15px 0;
+}
+.box .box-header{
+   padding: 20px 15px 5px 15px;
+}
+.box .box-header h4 {
+   display: inline-block;
+   font-size: 20px;
+   margin: 0 0;
+   padding: 0 0;
+}
+.box .box-body {
+   padding: 5px 0 0 0;
+}
+.box .box-body.body-panel{
+   padding: 20px 0 0 0
+}
+.box .box-body .block {
+   padding: 0 15px 15px 15px;
+}
+
+.box.box-light {
+   background: #fff;
+}
+/*
+* BOX CONSOLE */
+.box.box-console {
+   background: #fff;
+}
+.box.box-console .box-header {
+   padding: 10px 15px 5px 15px;
+}
+.box.box-console .box-header h4 {
+   font-size: 18px;
+}
+.box.box-console .box-body {
+   background: #000;
+   color: #fff;
+   padding-top: 10px;
+}
+.box.box-console .box-body .block {
+   font-size: 14px;
+}
+.box.box-console .box-body .block p {
+   color: #f39c12;
+   margin: 0 0;
+   padding: 0 0 1px 0;
+}
+
+/*
+* LISTS GROUP */
+.list-group .list-group-item strong {
+   display: inline-block;
+   min-width: 40%;
+}
+
+/*
+* LISTS */
+.lists{
+   list-style: none;
+   margin: 0 0 15px 0;
+   padding: 0 0;
+}
+.lists li {
+   margin: 0 0 1px 0;
+   padding: 0 7px;
+}
+.lists li strong {
+   display: inline-block;
+   background: #f3f3f3;
+   min-width: 250px;
+   padding: 0 7px;
+}
+.lists li strong::after {
+   content: ':';
+   float: right;
+}
+
+/*
+* TABLE */
+.table.table-sm td,{
+   padding:
+}
+.table .action {
+   text-align: right;
+}
+.table.table-slim thead,
+.table.table-slim tbody,
+.table.table-slim tr,
+.table.table-slim th,
+.table.table-slim td  {
+   border: none;
+}
+.table.table-slim th {
+   font-size: 15px;
+}
+.table.table-slim td {
+   border-top: 1px solid #ddd;
+   font-size: 13px;
+}
+.table.table-slim td,
+.table.table-slim th {
+   padding: 5px 10px;
+}
