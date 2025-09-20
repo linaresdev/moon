@@ -46,6 +46,7 @@ class Kernel
 	public function run($driver=NULL) {
 
         if( !empty($driver) ) {
+
             if( class_exists($driver) )
             {
                 if(is_string($driver)) $driver = new $driver;
@@ -60,7 +61,18 @@ class Kernel
                 if( method_exists($driver, "alias") ) {
                     $this->loadAlias( $driver->alias() );
                 }
+
+                if( method_exists($driver, "drivers") ) 
+                {
+                    if( is_array( ($parents = $driver->drivers()) ) )
+                    {
+                        foreach( $parents as $parent ) {
+                            $this->run($parent);
+                        }
+                    }
+                }
             }
+
         }
 	}
 

@@ -12,7 +12,7 @@ class RouteServiceProvider extends ServiceProvider {
     }
 
     public function map() {
-        Route::prefix('install')->namespace($this->namespace)
+        Route::prefix('install')->middleware("web")->namespace($this->namespace)
             ->group(__DIR__."/../Http/routes.php");
     }
 

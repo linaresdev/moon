@@ -34,7 +34,6 @@ class Driver {
 
     public function drivers() { 
         return [
-            
         ]; 
     }
 

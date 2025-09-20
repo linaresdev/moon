@@ -43,6 +43,9 @@
                                 </div>
                             </div>
                         </div> 
+
+                        {!! Alert::listener("system", "install::alerts.system") !!}
+                        
                         <div>
                             <div class="">
                                 <a href="{{__url('/install/env')}}" class="btn btn-outline-secondary rounded-0">

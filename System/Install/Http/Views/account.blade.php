@@ -5,21 +5,48 @@
             <article class="col-lg-8 offset-lg-2 col-sm-12">
                 <div class="bg-white border border-secondary p-4 mb-3">
                     <div class="p-4">
-                        <form action="#">
+                        <form action="{{__url(request()->path())}}" method="POST">
+
+                            <h4 class="fs-4 mb-3">
+                                <span class="mdi mdi-progress-pencil mdi-24px"></span>
+                                {{ __("Formulario") }}
+                            </h4>
+
+                            @if( $errors->any())
+                            <div class="alert alert-danger p-2 rounded-0">
+                                @foreach($errors->all() as $message)
+                                <p class="m-0"> -- {{$message}}</p>
+                                @endforeach
+                            </div>
+                            @endif
+
+                            <div class="my-4">
+                                <hr>
+                            </div> 
+
 
                             <h4 class="fs-4 mb-3">
                                 <span class="mdi mdi-progress-star mdi-24px"></span>
-                                {{ __("Nombre del proyecto") }}
+                                {{ __("Nómbre del proyecto") }}
                             </h4>
 
                             <div class="form-floating mb-3">
                                 <input type="text" 
-                                    name="name" 
-                                    value="{{old('name', env('APP_NAME'))}}" 
-                                    id="name" 
-                                    class="form-control"
-                                    placeholder="{{__('Nombre')}}">
-                                <label for="name">{{__('Nombre')}}</label>
+                                    name="appname" 
+                                    value="{{old('appname')}}" 
+                                    id="appname" 
+                                    class="form-control @error('appname') is-invalid @enderror"
+                                    placeholder="{{__('Nombre para el aplpicativo')}}">
+                                <label for="appname">{{__('Nómbre del aplicativo')}}</label>
+                            </div> 
+                            <div class="form-floating mb-3">
+                                <input type="text" 
+                                    name="slogan" 
+                                    value="{{old('slogan')}}" 
+                                    id="slogan" 
+                                    class="form-control @error('slogan') is-invalid @enderror"
+                                    placeholder="{{__('Descripcion corta para el aplicativo')}}">
+                                <label for="slogan">{{__('Descripción corta del aplicativo')}}</label>
                             </div> 
 
                             <div class="my-4">
@@ -31,21 +58,36 @@
                                 {{ __("Cuenta administrativa") }}
                             </h4>
                         
-                            <div class="form-floating mb-3">
-                                <input type="text" 
-                                    name="name" 
-                                    value="{{old('name')}}" 
-                                    id="name" 
-                                    class="form-control"
-                                    placeholder="{{__('Nombre')}}">
-                                <label for="name">{{__('Nombre')}}</label>
+                            <div class="d-flex">
+                                <div class="flex-fill me-1">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" 
+                                            name="firstname" 
+                                            value="{{old('firstname')}}" 
+                                            id="firstname" 
+                                            class="form-control @error('firstname') is-invalid @enderror"
+                                            placeholder="{{__('Nombre')}}">
+                                        <label for="firstname">{{__('Nómbre')}}</label>
+                                    </div>
+                                </div>
+                                <div class="flex-fill">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" 
+                                            name="lastname" 
+                                            value="{{old('lastname')}}" 
+                                            id="lastname" 
+                                            class="form-control @error('lastname') is-invalid @enderror"
+                                            placeholder="{{__('Apellidos')}}">
+                                        <label for="lastname">{{__('Apellidos')}}</label>
+                                    </div>
+                                </div>
                             </div>  
                             <div class="form-floating mb-3">
                                 <input type="email" 
                                     name="email" 
-                                    value="{{old('name')}}" 
+                                    value="{{old('email')}}" 
                                     id="email" 
-                                    class="form-control"
+                                    class="form-control @error('email') is-invalid @enderror"
                                     placeholder="{{__('Correo electrónico')}}">
                                 <label for="email">{{__('Correo electrónico')}}</label>
                             </div> 
@@ -53,18 +95,20 @@
                                 <input type="password" 
                                     name="password" 
                                     value="{{old('password')}}" 
-                                    class="form-control"
+                                    class="form-control @error('password') is-invalid @enderror"
                                     placeholder="{{__('Contraseña')}}">
                                 <label for="password">{{__('Contraseña')}}</label>
                             </div> 
                             
                             <div>
+                                @csrf
                                 <a href="{{__url('/install/database')}}" class="btn btn-outline-secondary rounded-0">
                                     << {{__("Regresar")}}
                                 </a>
 
                                 <button type="submit" 
                                     class="btn btn-success rounded-0">
+                                    <span class="mdi mdi-camera-iris"></span>
                                     {{__("Finalizar")}}
                                 </button>
                             </div>

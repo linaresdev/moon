@@ -1,7 +1,6 @@
 <?php
 
 ## DATABASE
-
 $this->loadMigrationsFrom( __path("{base}/System/Install/Database/Migrations") );
 
 Moon::url([

@@ -26,17 +26,20 @@ class Temp {
         return $this;
     }
 
+    public function file( $path, $file ) {
+        $this->path = $path; $this->file = $file; return $this;
+    }
 
     public function add( $data )
     {
         if( !app("files")->exists($this->path) ) {
             
             app("files")->makeDirectory( 
-                $this->path,  $mode = 0775, $recursive = true
+                $this->path,  $mode = 0777, $recursive = true
             );
         }
 
-        app("files")->put($this->path.'/'.$this->file, $data);       
+       return app("files")->put( $this->path.'/'.$this->file, $data );       
     }
 
     public function get( $file )

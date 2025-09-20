@@ -19,4 +19,5 @@ Route::controller(InstallController::class)->group(function(){
     });
 
     Route::get("account", "account");
+    Route::post("account", "accountCreate");
 });

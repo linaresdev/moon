@@ -13,6 +13,9 @@
                          <span class="mdi mdi-laravel"></span>
                          Ambiente de trabajo de Laravel
                      </p>
+
+                     {!! Alert::listener("system", "install::alerts.system") !!}
+
                      <div>
                          <form action="{{__url('install/env')}}" method="POST">
                              <div class="mb-2 p-3">

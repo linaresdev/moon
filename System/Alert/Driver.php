@@ -1,18 +1,18 @@
 <?php
-namespace Moon\Install;
+namespace Moon\Alert;
 
 class Driver
 {
     public function info()
     {
         return [
-            'name'          => 'Install',
+            'name'          => 'Alert',
             'author'        => 'Ramon A Linares Febles',
             'email'         => 'rlinareslf@gmail.com',
-            'license'       => 'Privada',
+            'license'       => 'Mit',
             'support'       => 'https://support.lc',
             'version'       => 'V-0.0',
-            'description'   => 'Asistentent de instalacion'
+            'description'   => 'Alertas y notificaciones'
         ];
     }
 
@@ -20,8 +20,8 @@ class Driver
     {
         return [
             'type' => 'package',
-            'slug' => 'install',
-            'driver' => '\Moon\Install\Driver::class',
+            'slug' => 'alert',
+            'driver' => '\Moon\Alert\Driver::class',
             'token' => NULL,
             'activated' => 1
         ];
@@ -29,16 +29,13 @@ class Driver
 
     public function providers() { 
         return [
-            \Moon\Install\Providers\InstallServiceProvider::class,
-            \Moon\Install\Providers\RouteServiceProvider::class,
+            \Moon\Alert\Providers\AlertServiceProvider::class
         ]; 
     }
-    public function alias() { return []; }
-
-    public function drivers() {        
+    public function alias() { 
         return [
-            \Moon\Alert\Driver::class,
-        ];  
+            "Alert" => \Moon\Alert\Facade\Alert::class,
+        ]; 
     }
 
     public function install($app) { }

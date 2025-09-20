@@ -3,6 +3,7 @@ namespace Moon\Install\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Moon\Install\Http\Support\InstallSupport;
+use Moon\Install\Http\Requests\AccountRequest;
 
 class InstallController extends Controller
 {
@@ -45,5 +46,8 @@ class InstallController extends Controller
     ## Account
     public function account() {
         return $this->render("account", $this->app->account());
+    }
+    public function accountCreate( AccountRequest $request ) {
+        return $this->app->accountCreate($request);
     }
 }
