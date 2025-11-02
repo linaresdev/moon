@@ -15,8 +15,8 @@ return new class extends Migration
         {
             Schema::table('users', function ( Blueprint $table )
             {
-                // $table->string('code', 20)->nullable()->after("id");
-                $table->string('user', 20)->nullable()->after("email_verified_at");
+                $table->string('code', 20)->nullable()->after("id");
+                $table->string('user', 30)->nullable()->after("email_verified_at");
                 $table->char('activated', 1)->default(0)->after("password");
                 
                 $table->text('meta')->nullable()->after("remember_token");
@@ -34,7 +34,7 @@ return new class extends Migration
         Schema::table("users", function(Blueprint $table)
         {
             $table->dropColumn([
-                //"code",
+                "code",
                 "activated",
                 "meta"
             ]);

@@ -44,46 +44,62 @@ class Kernel
    * RUN
    * Iniciar modulo de forma manual */
 	public function run($driver=NULL) {
-
-        if( !empty($driver) ) {
-
-            if( class_exists($driver) )
-            {
-                if(is_string($driver)) $driver = new $driver;
+        try {            
+            if( !empty($driver) ) {
                 
-                if( method_exists($driver, "providers") ) 
-                {
-                    if( !empty( ($providers = $driver->providers()) ) ) {
-                        $this->loadProviders( $providers );
-                    }
-                }
-                
-                if( method_exists($driver, "alias") ) {
-                    $this->loadAlias( $driver->alias() );
-                }
-
-                if( method_exists($driver, "drivers") ) 
-                {
-                    if( is_array( ($parents = $driver->drivers()) ) )
+                if( class_exists($driver) )
+                { 
+                    if(is_string($driver)) $driver = new $driver;
+                    
+                    if( method_exists($driver, "providers") ) 
                     {
-                        foreach( $parents as $parent ) {
-                            $this->run($parent);
+                        if( !empty( ($providers = $driver->providers()) ) ) {
+                            $this->loadProviders( $providers );
+                        }
+                    }
+                    
+                    if( method_exists($driver, "alias") ) {
+                        $this->loadAlias( $driver->alias() );
+                    }
+    
+                    if( method_exists($driver, "drivers") ) 
+                    {
+                        if( is_array( ($parents = $driver->drivers()) ) )
+                        {
+                            foreach( $parents as $parent ) {
+                                $this->run($parent);
+                            }
                         }
                     }
                 }
+    
             }
-
+        } catch (\Throwable $th) {
+            dd($th->getMessage());
         }
 	}
 
     public function start()
     {
-        if( self::$app["files"]->exists("core.json") ) {
-            $core = self::$app["files"]->get("core.json");
+        $filePath = __path("{tmp}/app.json");
 
-            return $true;
+        if( self::$app["files"]->exists($filePath) )
+        {
+            $core = self::$app["files"]->get($filePath);
+            $core = json_decode($core);
+            
+            if( ($app = $core->app)->activated ) 
+            {
+                $this->application = $core;
+                
+                return true;                
+            }
         }
 
         return false;
+    }
+
+    public function getApplication() {
+        return $this->application;
     }
 }

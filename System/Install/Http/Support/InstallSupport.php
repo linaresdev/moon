@@ -144,8 +144,8 @@ class InstallSupport
             $app->add("logo", '{cdn}/logo.png');
     
             $app->add("app", [
-                'type'      => 'package',
-                'slug'      => 'install',
+                'type'      => 'core',
+                'slug'      => 'app',
                 'driver'    => \Moon\Driver::class,
                 'token'     => "APP_MOON_TOKEN",
                 'activated' => 1
@@ -157,13 +157,17 @@ class InstallSupport
             ]);
     
             ## Packages
-            $app->add("packages", []);
+            $app->add("packages", [
+                \Moon\Driver::class,
+                \Moon\Http\Driver::class,
+            ]);
     
             # Plugins
             $app->add("plugins", []);
     
             # Themes
-            $app->add("themes", []);
+            $app->add("themes", [
+            ]);
     
             # Widgets
             $app->add("widgets", []);

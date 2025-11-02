@@ -47,10 +47,22 @@ class Moon
     public function start()
     {
         if( ($kernel = $this->load("kernel"))->start() ) {
-
+            return true;
         }
         else {
             $kernel->run(\Moon\Install\Driver::class);
         }
+
+        return false;
+    }
+
+    /* CORE
+     * Core del aplicativo */
+    public function core() {
+        return $this->load("kernel")->getApplication();
+    }
+
+    public function kernel($driver) {
+        $this->load("kernel")->run($driver);
     }
 }

@@ -1,10 +1,9 @@
 <?php
-namespace Moon;
+namespace Moon\Http;
 
-class Driver
-{
+class Driver {
+
     public function info() {
-
         return [
             'name'          => 'Moon',
             'author'        => 'Ramon A Linares Febles',
@@ -12,15 +11,15 @@ class Driver
             'license'       => 'Privada',
             'support'       => 'https://support.lc',
             'version'       => 'V-0.0',
-            'description'   => 'Gestor de paquetes y contenidos'
+            'description'   => 'Interfaz de usuarios para Moon'
         ];
     }
 
     public function app()
     {
         return [
-            'type' => 'package',
-            'slug' => 'moon',
+            'type' => 'BlueMoon',
+            'slug' => 'bluemoon',
             'driver' => '\Moon\Driver::class',
             'token' => NULL,
             'activated' => 1
@@ -34,7 +33,8 @@ class Driver
 
     public function providers() { 
         return [
-            \Moon\Providers\MoonServiceProvider::class
+            \Moon\Http\Providers\AppServiceProvider::class,
+            \Moon\Http\Providers\RouteServiceProvider::class
         ]; 
     }
     public function alias() { return []; }

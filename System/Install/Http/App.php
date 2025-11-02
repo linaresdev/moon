@@ -1,11 +1,11 @@
 <?php
 
-## DATABASE
-$this->loadMigrationsFrom( __path("{base}/System/Install/Database/Migrations") );
-
 Moon::url([
     "{cdn}" => Moon::dir("/cdn")
 ]);
+
+## DATABASE
+$this->loadMigrationsFrom( __path("{system}/Install/Database/Migrations") );
 
 ## Routes
 $this->loadRoutesFrom(__DIR__."/routes.php");
