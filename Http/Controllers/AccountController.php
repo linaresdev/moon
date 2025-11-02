@@ -1,15 +1,15 @@
 <?php
 namespace Moon\Http\Controllers;
 
-use Project\Http\Support\HomeSupport;
+use Moon\Http\Support\AccountSupport;
 
 class AccountController extends Controller {
 
-    public function __construct( HomeSupport $app ) {
+    public function __construct( AccountSupport $app ) {
         $this->boot($app);
     }
 
-    public function index() {
-        return $this->render('home', $this->app->index());
+    public function login() {
+        return $this->render('login', $this->app->login());
     }
 }
