@@ -9,7 +9,11 @@ class Handler
     }
 
     public function groups() {
-        return [];
+        return [
+            "moon" => [
+                \Moon\Http\Middleware\AuthMiddleware::class,
+            ]
+        ];
     }
 
     public function routes() {

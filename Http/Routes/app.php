@@ -1,7 +1,7 @@
 <?php
 
 
-Route::middleware("web")->group(function()
+Route::middleware(["web", "moon"])->group(function()
 {
     Route::controller(HomeController::class)->group(function(){
         Route::get('/', "index");
@@ -11,5 +11,7 @@ Route::middleware("web")->group(function()
     {    
         Route::get('/login', "login");
         Route::post('/login', "postLogin");
+
+        Route::get('/logout', "logout");
     });
 });

@@ -29,9 +29,11 @@ class AppServiceProvider extends ServiceProvider
         $this->app->setLocale(config("moon.locale", "es"));
 
         $locale = config("moon.faker_locale", "esDO");
+
+        
         
         if( !empty( ($grammaries = $this->getGrammars($locale))  ) ) 
-        {  
+        {
             $header  = $grammaries->header();
             $lines   = $grammaries->lines();
             
@@ -40,7 +42,7 @@ class AppServiceProvider extends ServiceProvider
     }
 
     public function getGrammars($locale=null)
-    {          
+    {         
         if( class_exists( ($store = "\Moon\Http\Locales\\$locale") ) ) {
             return (new $store);
         }
