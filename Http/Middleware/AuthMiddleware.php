@@ -18,6 +18,11 @@ class AuthMiddleware {
         {
             return redirect("login");
         }
+        else {
+            $data["login"] = $AUTH->user();
+            
+            app("view")->share($data);
+        }
         
         return $next( $request );
     }
@@ -26,7 +31,8 @@ class AuthMiddleware {
     {
         $out = false;
         
-        foreach( $this->exerts as $exert ) {
+        foreach( $this->exerts as $exert )
+        {
             if(\Str::is($exert, $request->path())) {
                 return true;
             }

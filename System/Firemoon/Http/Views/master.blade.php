@@ -14,16 +14,16 @@
 
     </head>
 
-    <body role="taller" class="bg-body-tertiary">
+    <body role="moon" class="{{style('body')}}">
 
-        <article class="{{$container}}">         
+        <article class="">         
 
             @yield("body", "Body Content")
             
         </article>
         
     <script src="{{__url('{cdn}/assets/js/jquery-371.min.js')}}"></script>
-    <script src="{{__url('{firemoon}/assets/js/bootstrap.min.js')}}"></script>
+    <script src="{{__url('{firemoon}/assets/js/bootstrap.bundle.min.js')}}"></script>
     @section("js")
     
     <script src="{{__url('{firemoon}/assets/js/layout.ui.js')}}"></script>        

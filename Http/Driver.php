@@ -18,7 +18,7 @@ class Driver {
     public function app()
     {
         return [
-            'type' => 'BlueMoon',
+            'type' => 'package',
             'slug' => 'bluemoon',
             'driver' => '\Moon\Driver::class',
             'token' => NULL,
@@ -28,6 +28,7 @@ class Driver {
 
     public function drivers() { 
         return [
+            \Moon\Theme\Driver::class,
         ]; 
     }
 
@@ -37,7 +38,11 @@ class Driver {
             \Moon\Http\Providers\RouteServiceProvider::class
         ]; 
     }
-    public function alias() { return []; }
+    public function alias() { 
+        return [
+            "Skin" => \Moon\Http\Facade\Skin::class,
+        ]; 
+    }
 
     public function install($app) { }
     public function destroy($app) { }

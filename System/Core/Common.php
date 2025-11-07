@@ -10,6 +10,35 @@ $this->app->bind("Moon", function( $app )
 ## LUNA
 $this->app["moon"] = Moon::load();
 
+## Helper luna
+if( !function_exists( "moon" ) )
+{    
+    function moon( $key=null, $args=null )
+    {
+        $app = Moon::load();
+        
+        if( !empty($key) )
+        {
+            if( empty($args) ) {
+                return Moon::load( $key );
+            }
+
+            if( !empty($args) && $args instanceof  \Closure ) {
+                Moon::load( $key, $args($app) );
+                return Moon::load($key);
+            }
+    
+            if( !empty($args) && is_object($args) ) 
+            {
+                Moon::load($key, $args);
+                return Moon::load($key);
+            }
+        }
+
+        return $app;
+    }
+}
+
 ## BIBLIOTECAS BÁSICAS
 Moon::load( "url", new \Moon\Core\Support\Url($this->app) );
 Moon::load( "finder", new \Moon\Core\Support\Finder($this->app) );

@@ -1,4 +1,4 @@
-@extends($skin->path("layout"))
+@extends("firemoon::layout")
 
     @section("content")
     

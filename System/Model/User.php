@@ -309,13 +309,13 @@ class User extends Authenticatable
 
     public function getAvatar()
     {
-        if( $this->avatar != null) {
+        if( $this->avatar != null) {           
             if( app("files")->exists(__path("{base}/public/".$this->avatar->url)) ) {
                 return $this->avatar->url;
             }
         }
 
-        return "cdn/images/users/avatar.png";
+        return "{base}/cdn/images/users/avatar.png";
     }
 
     public function getAvatares() {

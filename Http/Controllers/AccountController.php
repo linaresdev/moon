@@ -10,7 +10,7 @@ class AccountController extends Controller {
         $this->boot($app);
     }
 
-    public function login() {
+    public function login() {        
         return $this->render('login', $this->app->login());
     }
     public function postLogin( LoginRequest $request ) {

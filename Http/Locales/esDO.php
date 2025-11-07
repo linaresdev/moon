@@ -6,8 +6,9 @@ class esDO
     public function header() {
         return [
            "slug"         => "es",
-           "name"         => "es_DO",
-           "description"  => "Español República Dominicana"
+           "flag"         => "{cdn}/flag/do.svg",
+           "name"         => "esDO",
+           "description"  => "Español República Dominicana",
         ];
     }
 
@@ -28,10 +29,26 @@ class esDO
             ## Windown
             "close.window"      => "Cerrar esta ventana",
 
+            ## Legales
+            "legal.agreements"  => "Acuerdos legales",
+
+            ## Administrar
+            "manage.app"        => "Administrar esta aplicación",
+
             ## Words
-            "words.close"       => "Cerrar",
-            "words.user"        => "Ususario",
-            "words.password"    => "Contraseña",
+            "words.admin"           => "Administrador",
+            "words.accessibility"   => "Accesibilidad",
+            "words.contact"         => "Contacto",
+            "words.cookies"         => "Cookies",
+            "words.close"           => "Cerrar",
+            "words.help"            => "Ayuda",
+            "words.logout"          => "Salir",
+            "words.login"           => "Acceder",
+            "words.user"            => "Ususario",
+            "words.manage"          => "Administrar",
+            "words.password"        => "Contraseña",
+            "words.privacy"         => "Privacidad",
+            "words.security"        => "Seguridad",
 
             ## Validations
             "validator.email"       => "El campo :attribute no es valido",

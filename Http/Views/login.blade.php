@@ -1,4 +1,4 @@
-@extends($skin->path())
+@extends(skin("master"))
 
     @section("body")  
         
@@ -104,6 +104,6 @@
                 </section>
             </article>
         </section>
+        @endif
     </article>
-    @endif
     @endsection

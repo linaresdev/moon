@@ -28,6 +28,14 @@ class Driver {
         ];
     }
 
+    public function support() {
+        return __DIR__."/Http/App.php";
+    }
+
+    public function style() {
+        return new \Moon\Firemoon\Http\Style();
+    }
+
     public function providers() {}
 
     public function install($app) { }

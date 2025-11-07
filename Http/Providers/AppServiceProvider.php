@@ -1,19 +1,23 @@
 <?php
 namespace Moon\Http\Providers;
 
+use Moon\Http\Facade\Skin;
+use Moon\Core\Facade\Moon;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Translation\Translator;
 use Illuminate\Support\ServiceProvider;
 
-class AppServiceProvider extends ServiceProvider 
+use Moon\Providers\ProviderAccessor;
+
+class AppServiceProvider extends ProviderAccessor 
 {
     public function boot( Kernel $HTTP, Translator $LANG ) {
 
         $this->http = $HTTP;
 
-        $this->lang = $LANG;
+        $this->lang = $LANG;        
 
         require_once(__DIR__."/../App.php");
     }
@@ -24,16 +28,22 @@ class AppServiceProvider extends ServiceProvider
         );
     }
 
+    public function loadAppAuthProvider($data=[])
+    {
+        foreach($data as $key => $arg ) {
+            $this->app["config"]->set( $key, $arg );
+        }
+    }
+
     public function loadGrammary( $LANG )
     {
         $this->app->setLocale(config("moon.locale", "es"));
-
         $locale = config("moon.faker_locale", "esDO");
-
-        
         
         if( !empty( ($grammaries = $this->getGrammars($locale))  ) ) 
         {
+            moon( "locale", $grammaries);
+
             $header  = $grammaries->header();
             $lines   = $grammaries->lines();
             
@@ -43,7 +53,7 @@ class AppServiceProvider extends ServiceProvider
 
     public function getGrammars($locale=null)
     {         
-        if( class_exists( ($store = "\Moon\Http\Locales\\$locale") ) ) {
+        if( class_exists( ($store = "\Moon\Locales\\$locale") ) ) {
             return (new $store);
         }
     }
@@ -52,8 +62,7 @@ class AppServiceProvider extends ServiceProvider
     {
         if( class_exists($handler) )
         {
-            if( $this->app->runningInConsole() )
-            {
+            if( $this->app->runningInConsole() ) {
                 $this->commands((new $handler)->commands());
             }
         }
@@ -68,7 +77,8 @@ class AppServiceProvider extends ServiceProvider
     public function loadMiddleware($store)
     {
         ## STARTED
-        if( !empty( ($started = $store->start() ) ) ) {
+        if( !empty( ($started = $store->start() ) ) ) 
+        {
             foreach($started as $middleware ) {
                 $this->http->pushMiddleware( $middleware );
             }
@@ -88,17 +98,24 @@ class AppServiceProvider extends ServiceProvider
             }
         }
     }
-    public function loadSkinFrom($driver)
+
+    public function loadThemeFrom( $THEME ) 
     {
-        if( class_exists($driver) ) 
+        if( class_exists($THEME) ) 
         {
-            $driver = new $driver;
-            $skin = $driver->app();
+            $theme  = new $THEME;
 
-            $this->app["skin"] = new \Moon\Http\Support\SkinSupport($driver);
+            if( method_exists($theme, "support" ) ) 
+            {
+                $this->app["skin"]  = new \Moon\Support\Skin( $theme );
 
-            if( app("files")->exists($skin["kernel"]) ) {
-                require_once($skin["kernel"]);
+                ## Helper para plantillas
+                require_once(__path('{http}/Support/Helper.php'));
+
+                ## Plantilla    
+                if( app("files")->exists($theme->support()) ) {
+                    require_once($theme->support());
+                }
             }
         }
     }
