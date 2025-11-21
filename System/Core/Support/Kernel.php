@@ -47,56 +47,38 @@ class Kernel
         try {            
             if( !empty($driver) ) {
                 
-                if( class_exists($driver) )
-                { 
-                    if(is_string($driver)) $driver = new $driver;
-                    
-                    if( method_exists($driver, "providers") ) 
-                    {
-                        if( !empty( ($providers = $driver->providers()) ) ) {
-                            $this->loadProviders( $providers );
-                        }
-                    }
-                    
-                    if( method_exists($driver, "alias") ) {
-                        $this->loadAlias( $driver->alias() );
-                    }
-    
-                    if( method_exists($driver, "drivers") ) 
-                    {
-                        if( is_array( ($parents = $driver->drivers()) ) )
-                        {
-                            foreach( $parents as $parent ) {
-                                $this->run($parent);
-                            }
-                        }
+                if(is_string($driver)) {
+                    $driver = new $driver;
+                }
+
+                if( method_exists($driver, "providers") ) 
+                {
+                    if( !empty( ($providers = $driver->providers()) ) ) {
+                        $this->loadProviders( $providers );
                     }
                 }
+                
+                if( method_exists($driver, "alias") ) {
+                    $this->loadAlias( $driver->alias() );
+                }
+
+                if( method_exists($driver, "drivers") ) 
+                {
+                    if( is_array( ($parents = $driver->drivers()) ) )
+                    {
+                        foreach( $parents as $parent ) {
+                            $this->run($parent);
+                        }
+                    }
+                }               
     
             }
         } catch (\Throwable $th) {
-            dd($th->getMessage());
         }
 	}
 
-    public function start()
-    {
-        $filePath = __path("{tmp}/app.json");
-
-        if( self::$app["files"]->exists($filePath) )
-        {
-            $core = self::$app["files"]->get($filePath);
-            $core = json_decode($core);
-            
-            if( ($app = $core->app)->activated ) 
-            {
-                $this->application = $core;
-                
-                return true;                
-            }
-        }
-
-        return false;
+    public function start() {
+        return env("MOON_STATE", false);
     }
 
     public function getApplication() {

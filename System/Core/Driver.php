@@ -1,10 +1,5 @@
 <?php
-namespace Projet
-/*
-*---------------------------------------------------------
-* ©IIPEC
-*---------------------------------------------------------
-*/
+namespace Moon\Core;
 
 class Driver {
 
@@ -25,8 +20,8 @@ class Driver {
 
         return [
             'type'      => 'core',
-            'slug'      => 'cms',
-            'driver'    => '\Moo\Core\Driver::class',
+            'slug'      => 'moon',
+            'driver'    => \Moon\Core\Driver::class,
             'token'     => NULL,
             'activated' => 1
         ];

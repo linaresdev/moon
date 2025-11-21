@@ -23,7 +23,7 @@ class AccountSupport {
     {
         $data["user"]       = $request->user;
         $data["password"]   = $request->pwd;
-
+        
         if( Auth::attempt( $data ) )
         {
             $user = $request->user();

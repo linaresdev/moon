@@ -1,7 +1,7 @@
 <?php
-namespace Moon\Http\Controllers\Admin;
+namespace Moon\Admin\Controllers;
 
-use Moon\Http\Support\Admin\HomeSupport;
+use Moon\Admin\Supports\HomeSupport;
 
 class HomeController extends Controller {
 
@@ -9,7 +9,7 @@ class HomeController extends Controller {
         $this->boot($app);
     }
 
-    public function home() {
+    public function index() {
         return $this->render('home', $this->app->index());
     }
 }

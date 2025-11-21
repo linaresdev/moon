@@ -19,10 +19,10 @@ class Driver
     public function app()
     {
         return [
-            'type' => 'package',
-            'slug' => 'moon',
-            'driver' => '\Moon\Driver::class',
-            'token' => NULL,
+            'type'      => 'packages',
+            'slug'      => 'moon',
+            'driver'    => \Moon\Driver::class,
+            'token'     => NULL,
             'activated' => 1
         ];
     }
@@ -37,7 +37,10 @@ class Driver
             \Moon\Providers\MoonServiceProvider::class
         ]; 
     }
-    public function alias() { return []; }
+    public function alias() { 
+        return [
+        ]; 
+    }
 
     public function install($app) { }
     public function destroy($app) { }

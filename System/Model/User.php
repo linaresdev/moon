@@ -397,7 +397,7 @@ class User extends Authenticatable
     public function newsUserInfo($messages=null) {
 
         $agent = request()->userAgent();
-        $guard = (new \Moon\Support\Guard);
+        $guard = (new \Moon\Core\Support\Guard);
         $meta  = [
             "ip_address"    => request()->ip(),
             "agent"         => $agent,

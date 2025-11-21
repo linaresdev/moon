@@ -1,10 +1,11 @@
 <?php
-namespace Moon\Http\Controllers\Admin;
+namespace Moon\Admin\Controllers;
 
 use Moon\Model\User;
-use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+
+use Illuminate\Routing\Controller as BaseController;
 
 abstract class Controller extends BaseController 
 {
@@ -12,7 +13,7 @@ abstract class Controller extends BaseController
 
     protected $app;
 
-    protected $path = "moon::admin.";
+    protected $path = "admin::";
 
     public function boot($app)
     {           
@@ -34,8 +35,6 @@ abstract class Controller extends BaseController
         }
 
         $this->app = $app;
-
-        $data["skin"] = app("skin");
 
         view()->share($data);
     }  

@@ -19,10 +19,9 @@ class Driver {
     public function app()
     {
         return [
-            'type'      => 'theme',
+            'type'      => 'themes',
             'slug'      => 'firemoon',
             'driver'    => \Moon\Firemoon\Driver::class,
-            "kernel"    => __DIR__."/Http/App.php",
             'token'     => NULL,
             'activated' => 1
         ];
@@ -30,7 +29,7 @@ class Driver {
 
     public function support() {
         return __DIR__."/Http/App.php";
-    }
+    } 
 
     public function style() {
         return new \Moon\Firemoon\Http\Style();

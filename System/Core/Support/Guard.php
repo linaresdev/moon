@@ -21,7 +21,8 @@ class Guard {
 
 		if(empty($agent)) $agent = self::$AGENT;
 
-		if( !empty( ($platforms = config("guard.platforms")) ) ) {
+		if( !empty( ($platforms = config("guard.platforms")) ) )
+		{
 			foreach ($platforms as $key => $value) {
 				if ( preg_match('|'.preg_quote($key).'|i', $agent) ) {
 					return $value;

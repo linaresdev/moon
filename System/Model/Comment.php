@@ -20,7 +20,8 @@ class Comment extends Model {
         "updated_at"
     ];
 
-    public function date($format=null) {
+    public function date($format=null)
+    {
         $date = $this->created_at;
         
         if( $format == null ) {

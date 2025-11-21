@@ -7,7 +7,7 @@ $this->loadGrammary( $LANG );
 $this->loadMiddleware(new \Moon\Http\Middleware\Handler());
 
 ## Console
-$this->loadCommands(\Moon\Http\Console\Handler::class);
+$this->loadCommands(\Moon\Console\Handler::class);
 
 
 ## Routes
@@ -19,7 +19,8 @@ $this->loadAppAuthProvider([
 ]);
 
 ## Plantillas del aplicativo
-$this->loadThemeFrom(\Moon\Firemoon\Driver::class);
+//$this->loadThemeFrom(\Moon\Firemoon\Driver::class);
+//$skin = Skin::make("firemoon");
 
 ## VIEWS
 $this->loadViewsFrom(__DIR__.'/Views', 'moon');

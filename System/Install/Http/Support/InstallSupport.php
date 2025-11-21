@@ -120,9 +120,9 @@ class InstallSupport
         $user = app("db")->table("users");
 
         $account = $user->insert([
-            "name" => $request->firstname.' '.$request->lastname,
-            "email" => $request->email,
-            "password" => \Hash::make($request->password),
+            "name"      => $request->firstname.' '.$request->lastname,
+            "email"     => $request->email,
+            "password"  => \Hash::make($request->password),
             "activated" => 1,
             "meta" => json_encode([
                 "rol" => "admin",
@@ -136,45 +136,11 @@ class InstallSupport
 
         if( $account )
         {
-            $app = new Skeleton;
-    
-            $app->add("slug", \Str::slug(env("APP_NAME")));
-            $app->add("brand", $request->appname);
-            $app->add("slogan", $request->slogan);
-            $app->add("logo", '{cdn}/logo.png');
-    
-            $app->add("app", [
-                'type'      => 'core',
-                'slug'      => 'app',
-                'driver'    => \Moon\Driver::class,
-                'token'     => "APP_MOON_TOKEN",
-                'activated' => 1
-            ]);
-    
-            ## Libraries
-            $app->add("libraries", [
-                \Moon\Alert\Driver::class,
-            ]);
-    
-            ## Packages
-            $app->add("packages", [
-                \Moon\Driver::class,
-                \Moon\Http\Driver::class,
-            ]);
-    
-            # Plugins
-            $app->add("plugins", []);
-    
-            # Themes
-            $app->add("themes", [
-            ]);
-    
-            # Widgets
-            $app->add("widgets", []);
-    
-            if($app->save("app.json")) {
-                return redirect(__url('/'));
-            }
+            $env = app("files")->get(base_path(".env"));
+            $env = str_replace( "APP_MOON_STATE=false", "APP_MOON_STATE=true", $env );
+            app("files")->put(base_path(".env"), $env);
+
+            return redirect(__url('/'));
         }
 
         return back();

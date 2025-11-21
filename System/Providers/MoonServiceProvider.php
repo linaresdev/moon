@@ -12,17 +12,17 @@ class MoonServiceProvider extends ProviderAccessor
 {
     public function boot( Kernel $HTTP, Translator $LANG )
     {
+
         $this->http = $HTTP;
 
         $this->lang = $LANG;
-
-        //require_once(__path('{system}/Support/App.php'));
+       
+        require_once(__path('{system}/Support/App.php'));
     }
 
     public function register() { 
+        dd("A");
         //require_once(__path('{system}/Support/Helper.php'));       
-    }
-
-    
+    }   
     
 }

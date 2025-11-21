@@ -2,6 +2,7 @@
 namespace Moon\Core\Providers;
 
 use Moon\Core\Facade\Moon;
+use Moon\Core\Facade\Driver;
 use Illuminate\Support\ServiceProvider;
 
 class CoreServiceProvider extends ServiceProvider {
@@ -16,13 +17,11 @@ class CoreServiceProvider extends ServiceProvider {
             * -----------------------------------------------------------------
         */
 
-        /*
-        * [4] THEMES */
-        $this->load("themes");
-
-        /*
-        * [5] WIDGETS */  
-        $this->load("widgets");
+        foreach(Driver::boot() as $driver ) {
+            if( method_exists($driver, "support") ) {
+                require_once($driver->support());
+            }
+        }
     }
 
     public function register() 
@@ -37,27 +36,12 @@ class CoreServiceProvider extends ServiceProvider {
             * -----------------------------------------------------------------
         */
         
-        /*
-        * [1]  LIBRARIES */
-        $this->load("libraries");
-
-        /*
-        * [2] PACKAGES */
-        $this->load("packages");
-
-        /*
-        * [3] PLUGINS */      
-        $this->load("plugins");
-    }
-
-    public function load( $slug ) 
-    { 
-        if( isset($this->core->{$slug}) )
-        {
-            foreach( $this->core->{$slug} as $row ) {
-                $this->app["moon"]->kernel($row);
+        foreach(Driver::register() as $driver ) {
+            if( ($driver->app())["activated"] == 1 ) {
+                Moon::kernel($driver);
             }
         }
-    }
 
+        
+    }
 }

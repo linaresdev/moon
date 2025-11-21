@@ -18,29 +18,27 @@ class Driver {
     public function app()
     {
         return [
-            'type' => 'package',
+            'type' => 'packages',
             'slug' => 'bluemoon',
-            'driver' => '\Moon\Driver::class',
+            'driver' => \Moon\Http\Driver::class,
             'token' => NULL,
-            'activated' => 1
+            'activated' => 0
         ];
     }
 
     public function drivers() { 
         return [
-            \Moon\Theme\Driver::class,
         ]; 
     }
 
     public function providers() { 
         return [
-            \Moon\Http\Providers\AppServiceProvider::class,
+            \Moon\Http\Providers\BlueServiceProvider::class,
             \Moon\Http\Providers\RouteServiceProvider::class
         ]; 
     }
     public function alias() { 
         return [
-            "Skin" => \Moon\Http\Facade\Skin::class,
         ]; 
     }
 

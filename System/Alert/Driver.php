@@ -19,10 +19,10 @@ class Driver
     public function app()
     {
         return [
-            'type' => 'package',
-            'slug' => 'alert',
-            'driver' => '\Moon\Alert\Driver::class',
-            'token' => NULL,
+            'type'      => 'libraries',
+            'slug'      => 'alert',
+            'driver'    => \Moon\Alert\Driver::class,
+            'token'     => NULL,
             'activated' => 1
         ];
     }
@@ -32,6 +32,7 @@ class Driver
             \Moon\Alert\Providers\AlertServiceProvider::class
         ]; 
     }
+
     public function alias() { 
         return [
             "Alert" => \Moon\Alert\Facade\Alert::class,
@@ -39,5 +40,6 @@ class Driver
     }
 
     public function install($app) { }
+
     public function destroy($app) { }
 }
