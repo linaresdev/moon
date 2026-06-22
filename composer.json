@@ -1,0 +1,36 @@
+{    
+    "name": "linaresdev/moon",
+    "description": "Gestor de componentes y contenidos.",
+    "keywords": ["application", "component", "module", "package","cms"],
+    "license": "privada",
+    "type": "package",
+    "authors": [
+        {
+            "name": "Ing. Ramón A Linares Febles",
+            "email": "rlinareslf@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Moon\\": "System/",
+            "Moon\\Http\\": "Http/"          
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Moon\\Core\\Providers\\CoreServiceProvider"
+            ],
+            "aliases": {
+                "Core": "Moon\\Core\\Facade\\Core"
+            }
+        }
+    },
+    "minimum-stability": "dev"
+}
