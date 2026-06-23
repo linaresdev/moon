@@ -21,7 +21,7 @@ class Driver
         return [
             'type' => 'package',
             'slug' => 'install',
-            'driver' => '\Moon\Install\Driver::class',
+            'driver' => \Moon\Install\Driver::class,
             'token' => NULL,
             'activated' => 1
         ];

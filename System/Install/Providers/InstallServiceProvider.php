@@ -9,6 +9,6 @@ class InstallServiceProvider extends ServiceProvider {
         require_once(__DIR__."/../Http/App.php");
     }
 
-    public function register() {        
+    public function register() { 
     }
 }

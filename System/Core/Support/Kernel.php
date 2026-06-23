@@ -43,7 +43,8 @@ class Kernel
     /*
    * RUN
    * Iniciar modulo de forma manual */
-	public function run($driver=NULL) {
+	public function run($driver=NULL) 
+    {        
         try {            
             if( !empty($driver) ) {
                 

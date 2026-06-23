@@ -6,79 +6,33 @@ use Moon\Core\Support\DriverValidate;
 
 class Driver 
 {
-    protected static $app;
-
-    protected static $moon;
-
-    protected $core;
+    public $library  = [];
     
-    protected $containers = [
-        "libraries"     => [],
-        "packages"      => [],
-        "plugins"       => [],
-        "themes"        => [],
-        "widgets"       => []
-    ];
-    
+    public $package  = [];
 
-    public function __construct() {   
+    public $plugin   = [];
+
+    public $theme    = [];
+
+    public $widget   = [];    
+
+    public function __construct() {
 	}
 
-    public function containers() {
-        return $this->containers;
+    public function applications() {
+        return ((array) $this);
     }
 
     public function add($driver=null)
-    {        
+    {
         if( !empty(($app = $this->extract($driver)) ) ) 
         {
-            if( array_key_exists($app["type"], $this->containers) )
+            if( array_key_exists($app["type"], ($store = ((array) $this))) )
             {
-                if( !array_key_exists($app["slug"], $this->containers[$app["type"]])  )
-                {
-                    $this->containers[$app["type"]][$app["slug"]] = new $app["driver"];
+                if( !array_key_exists($app["slug"], $this->{$app["type"]}) ) {
+                    $this->{$app["type"]}[$app["slug"]] = new $app["driver"];
                 }
             }            
-        }
-    }
-
-    public function addFromFile( $path ) 
-    {
-        if( ($data = $this->stractFromFile($path)) != null )
-        {
-            foreach( $this->containers as $key => $value ) 
-            { 
-                if( isset($data->{$key}) ) 
-                {
-                    if( !empty( ($drivers = $data->{$key})) )
-                    {
-                        foreach($drivers as $driver ) {
-                            $this->add($driver);
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    public function boot()
-    {
-        $row = [];
-
-        foreach(["themes", "widgets"] as $key ) 
-        {
-            foreach($this->containers[$key] as $driver ) {
-                $row[] = $driver;
-            }
-        }
-
-        return $row;
-    }
-
-    public function core($driver) 
-    {
-        if( !empty(($app = $this->extract($driver)) ) ) {
-            $this->core = new $driver;
         }
     }
 
@@ -90,37 +44,12 @@ class Driver
                 $driver = new $driver;
             }
         }
-
+       
         if( is_object($driver) ) {
             if( $this->validate($driver->app()) ) {
                 return $driver->app();
             }
         }
-    }
-
-    public function stractFromFile($path)
-    { 
-        if(app("files")->exists($path) )
-        {
-            if( !empty( ($dataFile = app("files")->get($path)) ) ) 
-            {
-                return json_decode($dataFile);
-            }
-        }
-    }
-
-    public function register()
-    {
-        $row = [];
-
-        foreach(["libraries", "packages", "plugins"] as $key ) 
-        {
-            foreach($this->containers[$key] as $driver ) {
-                $row[] = $driver;
-            }
-        }
-
-        return $row;
     }
 
     public function validate($app)

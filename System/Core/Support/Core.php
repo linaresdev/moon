@@ -7,19 +7,20 @@ class Core {
 
     public function __construct( Loader $app ) 
     {
-		self::$app = $app;       
-
-        ## BIBLIOTECAS BÁSICAS
-        $this->url = $this->load( "url", new \Moon\Core\Support\Url($app) );
-        $this->finder = $this->load( "finder", new \Moon\Core\Support\Finder($app) );
-        $this->tmp = $this->load( "temp", new \Moon\Core\Support\Temp($app) );
-        $this->kernel = $this->load( "kernel", new \Moon\Core\Support\Kernel($app) );
+		self::$app = $app;
 	}
 
     /* BOOTSTRAP
      * Coleccionador singleton */
-	public function load( $key=NULL, $args=[], $params=[] ) {
-		return self::$app->load( $this, $key, $args, $params );
+	public function load( $key=NULL, $args=[], $params=[] ) 
+    {        
+		$arg = self::$app->load( $this, $key, $args, $params );
+
+        if( !empty($args) ) {
+            $this->{$key} = $arg;
+        }
+
+        return $arg;
 	}
 
     /* PATH
@@ -31,20 +32,19 @@ class Core {
     /* DIRECTORY
      * Directorio publico del aplicactivo */
     public function dir( $path=null ) {
-        return $this->url->dir( $path );
+        return $this->load("url")->dir( $path );
     }
 
     /* URL
      * Soporte para url etiquetadas */
     public function url($key=null) {
-        return $this->url->url($key);
+        return $this->load("url")->url($key);
     }
 
     /* DRIVER
      * Soporte para drivers */
-    public function driver( $class ) {
-        
-       // return $this->load("driver")->load($class);
+    public function driver( $driver ) {        
+       return $this->load("driver")->add($driver);
     }
 
     /* Application
@@ -55,7 +55,7 @@ class Core {
             return true;
         }
         else {
-            $kernel->run(\Moon\Install\Driver::class);
+            $this->kernel->run(\Moon\Install\Driver::class);
         }
 
         return false;
@@ -67,7 +67,7 @@ class Core {
         return $this->kernel->getApplication();
     }
 
-    public function kernel($driver) {
+    public function run($driver) {
         $this->kernel->run($driver);
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
-Moon::url([
-    "{cdn}" => Moon::dir("/cdn")
+Core::url([
+    "{cdn}" => Core::dir("/cdn")
 ]);
 
 ## DATABASE
