@@ -5,8 +5,15 @@ class Core {
     
     protected static $app;
 
-    public function __construct( Loader $app ) {
+    public function __construct( Loader $app ) 
+    {
 		self::$app = $app;       
+
+        ## BIBLIOTECAS BÁSICAS
+        $this->url = $this->load( "url", new \Moon\Core\Support\Url($app) );
+        $this->finder = $this->load( "finder", new \Moon\Core\Support\Finder($app) );
+        $this->tmp = $this->load( "temp", new \Moon\Core\Support\Temp($app) );
+        $this->kernel = $this->load( "kernel", new \Moon\Core\Support\Kernel($app) );
 	}
 
     /* BOOTSTRAP
@@ -24,13 +31,13 @@ class Core {
     /* DIRECTORY
      * Directorio publico del aplicactivo */
     public function dir( $path=null ) {
-        return $this->load("url")->dir( $path );
+        return $this->url->dir( $path );
     }
 
     /* URL
      * Soporte para url etiquetadas */
     public function url($key=null) {
-        return $this->load("url")->url($key);
+        return $this->url->url($key);
     }
 
     /* DRIVER
@@ -44,7 +51,7 @@ class Core {
      * Soporte de Inicio */
     public function start()
     {        
-        if( ($kernel = $this->load("kernel"))->start() ) {
+        if( $this->kernel->start() ) {
             return true;
         }
         else {
@@ -57,10 +64,10 @@ class Core {
     /* CORE
      * Core del aplicativo */
     public function core() {
-        return $this->load("kernel")->getApplication();
+        return $this->kernel->getApplication();
     }
 
     public function kernel($driver) {
-        $this->load("kernel")->run($driver);
+        $this->kernel->run($driver);
     }
 }

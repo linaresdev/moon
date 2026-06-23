@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="212"
+   height="212"
+   viewBox="0 0 56.091665 56.091668"
+   version="1.1"
+   id="svg8"
+   inkscape:version="1.0.2 (e86c870879, 2021-01-15)"
+   sodipodi:docname="logo.svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.979899"
+     inkscape:cx="209.04987"
+     inkscape:cy="145.10909"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1016"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     units="px"
+     inkscape:showpageshadow="false" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g879"
+       inkscape:export-filename="/home/rlinares/iipec.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96">
+      <circle
+         style="fill:#ffffff;fill-opacity:1;stroke:#d0d0d0;stroke-width:0.26458333;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="path833"
+         cx="28.045834"
+         cy="28.045834"
+         r="27.53348" />
+      <ellipse
+         style="fill:none;fill-opacity:1;stroke:#0066ff;stroke-width:1.27869;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="circle875"
+         cx="28.045834"
+         cy="28.045832"
+         rx="26.612741"
+         ry="26.61274" />
+    </g>
+    <path
+       style="fill:#ff6600;fill-opacity:1;stroke:none;stroke-width:0.683934px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 10.566359,39.604983 c 1.729074,-0.851953 3.817141,-1.196054 4.869347,-3.005536 0.317101,-4.767911 -0.0033,-7.498103 2.198504,-13.190293 0.459617,-0.53715 0.43923,-1.023922 1.166796,-1.596896 0.482963,-0.54668 1.910951,-0.326442 2.087477,0.341298 0,0 0.487327,0.114531 -0.524646,3.763372 -0.608414,1.480317 -1.251212,2.558125 -1.392849,3.71181 -0.749101,3.490441 -0.671462,5.24674 -0.558279,5.998409 0.678869,4.710052 5.307752,1.194543 8.52925,0.334603 1.030002,-0.33296 0.681091,0.245402 0.730648,0.560423 -0.78515,2.012827 -3.685289,2.764308 -5.959884,3.969438 -1.530883,0.196378 -2.352182,0.09767 -3.164901,-0.0046 -0.235208,-1.182822 -0.724276,-1.165368 -1.178685,-1.311782 -0.614354,-0.388137 -1.623326,0.01833 -3.025104,1.215792 l -3.598699,0.05593 C 9.4526163,40.244234 10.29751,39.9064 10.566363,39.604975 Z"
+       id="path895"
+       sodipodi:nodetypes="cccccccccccccccc"
+       inkscape:export-filename="/home/rlinares/iipec.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.683934px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 23.775208,41.096168 6.242322,0.01789 c 0.456608,-0.777856 1.164387,-1.359674 2.322295,-1.590161 1.224371,0.740807 1.559544,1.263261 1.85813,1.77673 l 3.44318,0.122305 c 2.440211,0.03754 4.423773,-1.932751 6.499237,-3.498963 0.422143,-0.971822 0.534834,-1.697657 -0.985736,-1.125173 -2.436155,1.347175 -6.275245,3.511073 -7.914899,1.767968 l -0.91642,-0.962898 c -0.572371,-1.760008 -0.655005,-4.181329 -0.338658,-5.77696 0.55464,-2.05053 0.801555,-3.897888 1.785023,-5.612343 0.578485,-0.74291 0.989691,-2.673029 0.13031,-3.301622 -0.732593,-0.281016 -1.276412,-0.08918 -1.276412,-0.08918 -0.50573,0.173977 -0.751337,0.497648 -1.285833,1.233162 -0.494086,0.846099 -1.122639,2.691521 -1.490138,4.14168 -0.81528,2.59506 -0.651554,5.357445 -0.595081,8.082864 -0.434034,1.599461 -4.377305,3.303112 -5.985337,3.859823 -0.919684,0.318398 -1.181524,0.551095 -1.491973,0.95487 z"
+       id="path897"
+       sodipodi:nodetypes="ccccccccccccccccscc"
+       inkscape:export-filename="/home/rlinares/iipec.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <ellipse
+       style="fill:#ff6600;fill-opacity:1;stroke:none;stroke-width:6.15057;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path899"
+       cx="27.34856"
+       cy="27.314528"
+       rx="3.51789"
+       ry="3.3656375"
+       transform="matrix(0.92402922,-0.38232186,-0.09298081,0.9956679,0,0)"
+       inkscape:export-filename="/home/rlinares/iipec.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <ellipse
+       style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:6.15057;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="ellipse901"
+       cx="41.5093"
+       cy="39.644245"
+       rx="3.51789"
+       ry="3.3656375"
+       transform="matrix(0.8590152,-0.51195008,0.05200687,0.99864673,0,0)"
+       inkscape:export-filename="/home/rlinares/iipec.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+  </g>
+</svg>

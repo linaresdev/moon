@@ -33,18 +33,18 @@ class Loader
 		if( !empty($key) && !empty($args) && (is_string($args) OR is_object($args) ) ) {
 
 			if( !array_key_exists($key, self::$APP) && is_string($args) ) {
-				self::$APP[$key] = new $args($params);
+				return self::$APP[$key] = new $args($params);
 			}
 
 			if( !array_key_exists($key, self::$APP) && is_object($args) ) {
-				self::$APP[$key] = $args;
+				return (self::$APP[$key] = $args);
 			}
 		}
 
 		if( !empty($key) && !empty($args) &&  $args instanceof  \Closure ) {
 
 			if( !isset(self::$APP[$key]) ) {
-				self::$APP[$key] = $args($params);
+				return (self::$APP[$key] = $args($params));
 			}
 		}
 	}
