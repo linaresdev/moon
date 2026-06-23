@@ -41,4 +41,4 @@ Core::path([
 ]);
 
 // Start Core Applications
-Core::start();
+//Core::start();
