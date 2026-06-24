@@ -116,28 +116,27 @@ class InstallSupport
 
     public function accountCreate($request) 
     {   
-        $file = __path("{tmp}/app.json");
         $user = app("db")->table("users");
 
-        $account = $user->insert([
-            "name"      => $request->firstname.' '.$request->lastname,
-            "email"     => $request->email,
-            "password"  => \Hash::make($request->password),
-            "activated" => 1,
-            "meta" => json_encode([
-                "rol" => "admin",
-                "rols" => [
-                    "owner" => ["view" => 1, "insert"=>1,"update"=>1,"delete"=>1]  ,      
-                    "user" => ["view" => 1, "insert"=>1,"update"=>1,"delete"=>1],
-                    "admin" => ["view" => 1, "insert"=>1,"update"=>1,"delete"=>1]
-                ]
-            ]),
-        ]);
+        if( ($account = $user->where("email", $request->email))->count() > 0 ) {
+            
+            $account->update([
+                "password" => \Hash::make($request->password)
+            ]);
+        } else {
+            $account = $user->insert([
+                "name"      => $request->firstname.' '.$request->lastname,
+                "email"     => $request->email,
+                "password"  => \Hash::make($request->password),
+                "activated" => 1
+            ]);
+        }
 
         if( $account )
         {
             $env = app("files")->get(base_path(".env"));
             $env = str_replace( "APP_MOON_STATE=false", "APP_MOON_STATE=true", $env );
+
             app("files")->put(base_path(".env"), $env);
 
             return redirect(__url('/'));

@@ -47,19 +47,7 @@ class Core {
        return $this->load("driver")->add($driver);
     }
 
-    /* Application
-     * Soporte de Inicio */
-    public function start()
-    {        
-        if( $this->kernel->start() ) {
-            return true;
-        }
-        else {
-            $this->kernel->run(\Moon\Install\Driver::class);
-        }
-
-        return false;
-    }
+    
 
     /* CORE
      * Core del aplicativo */

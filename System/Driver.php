@@ -1,5 +1,5 @@
 <?php
-namespace Moon
+namespace Moon;
 
 class Driver {
 
@@ -9,7 +9,7 @@ class Driver {
             'name'  => 'Moon',
             'author' => 'Ramon A Linares',
             'email' => 'rlinareslf@gmail.com',
-            'license' => 'Mit'
+            'license' => 'Mit',
             'support' => 'https://support.lc',
             'version' => 'V-0.0',
             'description' => 'Gestor de componentes y contenidos'
@@ -27,7 +27,14 @@ class Driver {
         ];
     }
 
-    public function providers() { return []; }
+    public function providers() 
+    { 
+        return [
+            \Moon\Providers\MoonServiceProvider::class,
+            \Moon\Providers\RouteServiceProvider::class
+        ]; 
+    }
+
     public function alias() { return []; }
 
     public function install($app) { }

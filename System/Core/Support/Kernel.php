@@ -47,20 +47,20 @@ class Kernel
     {        
         try {            
             if( !empty($driver) ) {
-                
+                //dd($driver);
                 if(is_string($driver)) {
                     $driver = new $driver;
                 }
-
+                
+                if( method_exists($driver, "alias") ) {
+                    $this->loadAlias( $driver->alias() );
+                }
+                
                 if( method_exists($driver, "providers") ) 
                 {
                     if( !empty( ($providers = $driver->providers()) ) ) {
                         $this->loadProviders( $providers );
                     }
-                }
-                
-                if( method_exists($driver, "alias") ) {
-                    $this->loadAlias( $driver->alias() );
                 }
 
                 if( method_exists($driver, "drivers") ) 
@@ -75,12 +75,13 @@ class Kernel
     
             }
         } catch (\Throwable $th) {
+            dd($th->getMessage());
         }
 	}
 
-    public function start() {
-        return env("MOON_STATE", false);
-    }
+    // public function start() {
+    //     return  ;
+    // }
 
     public function getApplication() {
         return $this->application;

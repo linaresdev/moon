@@ -40,5 +40,10 @@ Core::path([
     "{cdn}"         => "{public}/cdn"
 ]);
 
-// Start Core Applications
-//Core::start();
+## Start Core Applications
+if( env("APP_MOON_STATE", false) ) {    
+    Core::run(\Moon\Driver::class);
+}
+else {
+    Core::run(\Moon\Install\Driver::class);
+}

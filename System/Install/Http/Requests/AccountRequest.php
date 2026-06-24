@@ -17,7 +17,7 @@ class AccountRequest extends FormRequest
             'slogan'    => 'required',
             'firstname' => 'required',
             'lastname'  => 'required',
-            'email'     => 'required|unique:users,email',
+            'email'     => 'required',
             'password'  => 'required',
         ];
     }

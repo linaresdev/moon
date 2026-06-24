@@ -29,6 +29,8 @@ return new class extends Migration
 
             $table->char("activated", 1)->default(1);
 
+            $table->unsignedBigInteger("counter")->default(0);
+
             $table->text("meta")->nullable();
 
             $table->timestamps();
