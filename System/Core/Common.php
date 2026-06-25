@@ -15,6 +15,7 @@ Core::load( "finder", new \Moon\Core\Support\Finder($app) );
 Core::load( "temp", new \Moon\Core\Support\Temp($app) );
 Core::load( "kernel", new \Moon\Core\Support\Kernel($app) );
 Core::load( "driver", new \Moon\Core\Support\Driver($app) );
+Core::load( "guard", new \Moon\Core\Support\Guard($app) );
 
 $this->app["core"]  = Core::load();
 
@@ -33,6 +34,7 @@ $migrations = str_replace(
 
 Core::path([
     "{system}"      => __SYSTEM__,
+    "{http}"        => __HTTP__,
     "{base}"        => realpath(__DIR__."/../../"),
     "{migrations}"  => $migrations,
     "{tmp}"         => env("APP_TMP", base_path("tmps")),

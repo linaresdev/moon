@@ -23,6 +23,18 @@ class Core {
         return $arg;
 	}
 
+    /* GUARD
+    * Capa de seguridad */
+    public function guard( $method=null, $arg=null ) {
+
+        if( !empty($method) )
+        {
+            if( method_exists($this->guard, $method) ) {
+                return $this->guard->{$method}($arg);
+            }
+        }
+    }
+
     /* PATH
     * Con soporte para rutas etiquetadas */
     public function path($key=null) {
@@ -45,9 +57,7 @@ class Core {
      * Soporte para drivers */
     public function driver( $driver ) {        
        return $this->load("driver")->add($driver);
-    }
-
-    
+    }    
 
     /* CORE
      * Core del aplicativo */

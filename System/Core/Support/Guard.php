@@ -17,11 +17,21 @@ class Guard {
         self::$AGENT    = request()->userAgent();
 	}
 
-	public function getPlatform($agent=NULL) {
+	public function lists($agent=NULL) {
+		return [
+			"os" => $this->platform($agent),
+			"browser" => $this->browser($agent),
+			"robot" => $this->robot($agent),
+			"mobil" => $this->mobil($agent),
+			"device" => $this->device($agent),
+		];
+	}
+
+	public function platform($agent=NULL) {
 
 		if(empty($agent)) $agent = self::$AGENT;
 
-		if( !empty( ($platforms = config("guard.platforms")) ) )
+		if( !empty( ($platforms = (new GuardList)->platforms()) ) )
 		{
 			foreach ($platforms as $key => $value) {
 				if ( preg_match('|'.preg_quote($key).'|i', $agent) ) {
@@ -33,11 +43,11 @@ class Guard {
 		return 'Unknown Platform';
 	}
 
-	public function getBrowser($agent=null) {
+	public function browser($agent=null) {
         
 		if( empty($agent) ) $agent = self::$AGENT;
 
-		if( !empty( ($browsers = config("guard.browsers")) ) && is_array($browsers) ) {
+		if( !empty( ($browsers = (new GuardList)->browsers()) ) && is_array($browsers) ) {
 			foreach ($browsers as $key => $value) {
 				if (preg_match('|'.$key.'.*?([0-9\.]+)|i', $agent, $match)) {
 					return $value.' | V-'.$match[1]; 
@@ -48,10 +58,10 @@ class Guard {
 		return 'Unknown Browser'; 
 	}
 
-	public function getRobot($agent=null) {
+	public function robot($agent=null) {
 		if(empty($agent)) $agent = self::$AGENT;
 
-		if( !empty( ($robots = config("guard.robots")) ) && is_array($robots) ) {
+		if( !empty( ($robots = (new GuardList)->robots()) ) && is_array($robots) ) {
 			foreach ($robots as $key => $value) {
 				if (preg_match('|'.preg_quote($key).'|i', $agent, $match))
 				{
@@ -61,10 +71,10 @@ class Guard {
 		} 
 	}
 
-	public function getMobil($agent=NULL) {
+	public function mobil($agent=NULL) {
 		if(empty($agent)) $agent = self::$AGENT;
 		
-		if( !empty( ($mobiles = config("guard.mobiles")) ) && is_array($mobiles) ) {
+		if( !empty( ($mobiles = (new GuardList)->mobiles()) ) && is_array($mobiles) ) {
 			foreach ($mobiles as $key => $value) {
 				if( preg_match('|'.preg_quote($key).'|i', $agent, $match) ) {
 					return $value; 
@@ -80,7 +90,7 @@ class Guard {
         if(empty($agent)) $agent = self::$AGENT;
 
 		if( !empty( $agent) ) {
-			if( !empty( ($mobiles = config("guard.mobiles")) ) && is_array($mobiles) ) {
+			if( !empty( ($mobiles = (new GuardList)->mobiles()) ) && is_array($mobiles) ) {
 				foreach ($mobiles as $key => $value) {
 					if( preg_match('|'.preg_quote($key).'|i', $agent, $match) ) {
 						return "Smartphone"; 
