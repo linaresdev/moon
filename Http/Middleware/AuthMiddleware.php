@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 class AuthMiddleware {
 
     protected $exerts = [
+        //"/",
         "login",
         "logout",
         "getmembership"

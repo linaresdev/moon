@@ -53,8 +53,12 @@ class Core {
         return $this->load("url")->url($key);
     }
 
-    /* DRIVER
-     * Soporte para drivers */
+    /* DRIVERS
+     * Soporte para drivers */    
+    public function driverlinks() {
+        return app("db")->table("drivers")->where("state", 1)->get();
+    }
+
     public function driver( $driver ) {        
        return $this->load("driver")->add($driver);
     }    

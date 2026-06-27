@@ -19,11 +19,19 @@ class Driver {
     public function app()
     {
         return [
-            'type' => 'package',
+            'type' => 'packages',
             'slug' => 'moon',
             'driver' => \Moon\Driver::class,
             'token' => NULL,
             'activated' => 1
+        ];
+    }
+
+    public function drivers() 
+    {
+        return [
+            \Moon\Alert\Driver::class,
+            \Moon\Night\Driver::class
         ];
     }
 

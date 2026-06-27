@@ -68,19 +68,19 @@ class InstallSupport
         return $data;
     }
 
-    public function testConnect($driver) {
+    public function testConnect($driver) 
+    {
         try {
-
             $DB = \DB::connection($driver);
+            // dd($DB->getPdo());
 
-           // dd($DB->getPdo());
-
-           return true;
+            return true;
 
         } catch (\Throwable $th) {
             return false;
         }
     }
+
     public function migrate()
     {
         \Artisan::call("migrate");
@@ -91,7 +91,9 @@ class InstallSupport
     }
     public function migrateRefresh()
     {
-        \Artisan::call("migrate:refresh");       
+        \Artisan::call("migrate:refresh");    
+        
+        (new \Moon\Model\Driver)->add(\Moon\Driver::class);
 
         return back()->with(
             "success", "Refrescado de la migraciones aplicada correctamente"
@@ -128,12 +130,13 @@ class InstallSupport
                 "name"      => $request->firstname.' '.$request->lastname,
                 "email"     => $request->email,
                 "password"  => \Hash::make($request->password),
-                "activated" => 1
+                "activated"     => 1
             ]);
         }
 
         if( $account )
-        {
+        {                  
+
             $env = app("files")->get(base_path(".env"));
             $env = str_replace( "APP_MOON_STATE=false", "APP_MOON_STATE=true", $env );
 

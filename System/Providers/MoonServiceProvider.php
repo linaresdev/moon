@@ -9,6 +9,8 @@ use Illuminate\Support\ServiceProvider;
 
 class MoonServiceProvider extends ServiceProvider 
 {
+    
+
     public function boot( Kernel $HTTP, Translator $LANG ) {
         require_once(__path( '{http}/App.php' ));
     }

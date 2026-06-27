@@ -43,8 +43,13 @@ Core::path([
 ]);
 
 ## Start Core Applications
-if( env("APP_MOON_STATE", false) ) {    
-    Core::run(\Moon\Driver::class);
+if( env("APP_MOON_STATE", false) ) 
+{
+    foreach(Core::driverlinks() as $row ) {
+        if( in_array($row->type, $this->fillable()) ) {
+            $this->{$row->type}[] = new $row->file;
+        }
+    }
 }
 else {
     Core::run(\Moon\Install\Driver::class);

@@ -6,12 +6,15 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvi
 
 class RouteServiceProvider extends ServiceProvider 
 {
+
+    protected $namespace = "\\Moon\\Http\\Controllers";
+
     public function boot() {
         parent::boot();
     }
 
     public function map() {
-        //Route::prefix('app')->group(base_path('path/users.php'));
+        Route::namespace($this->namespace)->group(__path('{http}/Route/app.php'));
     }
 
 }
